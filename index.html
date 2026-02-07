@@ -1,122 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catch the Ball Game</title>
-  <style>
+  <title>My Cool 2000s Website</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">
     body {
-      text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 50px;
+      background: #000033 url("stars-bg.gif");
+      color: #FFFFFF;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      margin: 0;
+      padding: 0;
     }
-    canvas {
-      background-color: #f0f0f0;
-      display: block;
+
+    a {
+      color: #00FFCC;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #FFFF00;
+    }
+
+    #wrapper {
+      width: 800px;
       margin: 0 auto;
-      border: 2px solid #333;
+      border: 1px solid #00FFFF;
+      background-color: #000022;
     }
-    #score {
-      font-size: 20px;
+
+    #header {
+      background: #000044 url("header-gradient.gif") repeat-x;
+      height: 120px;
+      text-align: center;
+      color: #00FFFF;
+      border-bottom: 1px solid #00FFFF;
+    }
+
+    #header h1 {
+      margin: 0;
+      padding-top: 30px;
+      font-size: 28px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    #header h2 {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    #nav {
+      background-color: #000011;
+      border-bottom: 1px solid #00FFFF;
+    }
+
+    #nav table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #nav td {
+      text-align: center;
+      padding: 6px 0;
+      border-right: 1px solid #003366;
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    #nav td:last-child {
+      border-right: none;
+    }
+
+    #nav a {
+      color: #00FFCC;
+      text-transform: uppercase;
+    }
+
+    #content-area {
+      padding: 10px;
+    }
+
+    #sidebar {
+      width: 180px;
+      background-color: #000011;
+      border-right: 1px solid #003366;
+      vertical-align: top;
+      padding: 8px;
+      font-size: 10px;
+    }
+
+    #main {
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    .box-title {
+      background-color: #001144;
+      color: #00FFFF;
+      font-weight: bold;
+      padding: 3px 5px;
+      font-size: 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #003366;
+    }
+
+    .box-content {
+      padding: 5px;
+      background-color: #000022;
+      border: 1px solid #001144;
+      border-top: none;
+      margin-bottom: 10px;
+    }
+
+    #footer {
+      text-align: center;
+      font-size: 10px;
+      padding: 8px 0;
+      border-top: 1px solid #00FFFF;
+      background-color: #000011;
+      color: #999999;
+    }
+
+    .marquee-bar {
+      background-color: #001144;
+      color: #00FFCC;
+      font-size: 10px;
+      padding: 2px 5px;
+      border-bottom: 1px solid #003366;
     }
   </style>
 </head>
 <body>
-  <h1>Catch the Falling Ball</h1>
-  <p id="score">Score: 0</p>
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
 
-  <script>
-    // Set up canvas and context
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+<div id="wrapper">
 
-    // Paddle settings
-    const paddleWidth = 80, paddleHeight = 10;
-    let paddleX = (canvas.width - paddleWidth) / 2;
+  <!-- Header -->
+  <div id="header">
+    <h1>My 2000s Site</h1>
+    <h2>Welcome to my awesome retro homepage</h2>
+  </div>
 
-    // Ball settings
-    let ballX = Math.random() * canvas.width;
-    let ballY = 0;
-    const ballRadius = 10;
-    let ballSpeed = 10;
+  <!-- Marquee / News Ticker -->
+  <div class="marquee-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="3">
+      Welcome to my website! &nbsp;|&nbsp; Last updated: 07/02/2004 &nbsp;|&nbsp; Sign my guestbook!
+    </marquee>
+  </div>
 
-    // Score
-    let score = 0;
+  <!-- Navigation -->
+  <div id="nav">
+    <table>
+      <tr>
+        <td><a href="#">Home</a></td>
+        <td><a href="#">About Me</a></td>
+        <td><a href="#">Photos</a></td>
+        <td><a href="#">Downloads</a></td>
+        <td><a href="#">Links</a></td>
+        <td><a href="#">Guestbook</a></td>
+      </tr>
+    </table>
+  </div>
 
-    // Listen for arrow key movement
-    document.addEventListener('keydown', (event) => {
-      if(event.key === 'ArrowLeft') paddleX -= 20;
-      if(event.key === 'ArrowRight') paddleX += 20;
+  <!-- Content Area -->
+  <div id="content-area">
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <!-- Sidebar -->
+        <td id="sidebar">
+          <div class="box-title">Navigation</div>
+          <div class="box-content">
+            <ul style="margin:0; padding-left:15px; list-style-type:square;">
+              <li><a href="#">News Archive</a></li>
+              <li><a href="#">My Blog</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
 
-      // Ensure paddle stays inside canvas
-      paddleX = Math.max(0, Math.min(canvas.width - paddleWidth, paddleX));
-    });
+          <div class="box-title">About Me</div>
+          <div class="box-content">
+            <b>Name:</b> Your Name<br>
+            <b>Age:</b> 16<br>
+            <b>Location:</b> Somewhere Online<br><br>
+            I love HTML, MSN, and making cool websites!
+          </div>
 
-    // Draw paddle
-    function drawPaddle() {
-      ctx.fillStyle = '#333';
-      ctx.fillRect(paddleX, canvas.height - paddleHeight - 10, paddleWidth, paddleHeight);
-    }
+          <div class="box-title">Counter</div>
+          <div class="box-content" style="text-align:center;">
+            <img src="counter.gif" alt="Visitor Counter"><br>
+            You are visitor #000123
+          </div>
+        </td>
 
-    // Draw ball
-    function drawBall() {
-      ctx.beginPath();
-      ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-      ctx.fillStyle = 'red';
-      ctx.fill();
-      ctx.closePath();
-    }
+        <!-- Main Content -->
+        <td id="main">
+          <div class="box-title">Latest News</div>
+          <div class="box-content">
+            <b>07 February 2004</b><br>
+            Welcome to my brand new site layout! I finally learned tables and CSS, so everything should
+            look way cooler now. I’ll be adding more pages soon, including a downloads section with
+            wallpapers and Winamp skins.<br><br>
 
-    // Update ball position
-    function updateBall() {
-      ballY += ballSpeed;
+            <b>01 February 2004</b><br>
+            Just uploaded some new photos and updated my links page. If you want to trade links,
+            send me an email and I’ll add your button here!
+          </div>
 
-      // Check if ball hits paddle
-      if(ballY + ballRadius >= canvas.height - paddleHeight - 10 &&
-         ballX >= paddleX && ballX <= paddleX + paddleWidth) {
-        score++;
-        document.getElementById('score').textContent = "Score: " + score;
-        resetBall();
-      }
+          <div class="box-title">Welcome</div>
+          <div class="box-content">
+            Hey there! You’ve reached my personal homepage. This is where I post random stuff about my life,
+            my favorite bands, and anything else I feel like sharing.<br><br>
 
-      // Reset if ball falls off screen
-      if(ballY - ballRadius > canvas.height) {
-        score = 0;
-        document.getElementById('score').textContent = "Score: " + score;
-        resetBall();
-      }
-    }
+            This site is best viewed in <b>Internet Explorer 6</b> at 800x600 resolution with your speakers on.
+            Don’t forget to bookmark this page and sign my guestbook before you leave!
+          </div>
 
-    // Reset ball to top
-    function resetBall() {
-      ballX = Math.random() * canvas.width;
-      ballY = 0;
-    }
+          <div class="box-title">Link Buttons</div>
+          <div class="box-content">
+            If you want to link me, use one of these buttons:<br><br>
+            <img src="button1.gif" alt="Link Button 1">
+            <img src="button2.gif" alt="Link Button 2">
+            <img src="button3.gif" alt="Link Button 3">
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-    // Draw everything
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawPaddle();
-      drawBall();
-      updateBall();
-      requestAnimationFrame(draw);
-    }
+  <!-- Footer -->
+  <div id="footer">
+    &copy; 2004 Your Name &nbsp;|&nbsp; All graphics &amp; content belong to their respective owners.<br>
+    Best viewed with Internet Explorer 6 at 800x600.
+  </div>
 
-    draw();
-  </script>
+</div>
+
 </body>
 </html>
-How It Works
-HTML Canvas: The <canvas> element is used for drawing the game.
-CSS Style: Center the canvas and style the background.
-JavaScript Game Logic:
-Track the paddle position and control movement with arrow keys.
-Randomly drop a ball from the top.
-Detect collisions between the ball and paddle.
-Update the score when the ball is successfully caught and reset if missed.
-Use requestAnimationFrame() for smooth animation.
-Try It
-Save the code as index.html.
-Open it in a web browser.
-Use left and right arrow keys 
