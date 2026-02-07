@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catch the Ball Game</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+    canvas {
+      background-color: #f0f0f0;
+      display: block;
+      margin: 0 auto;
+      border: 2px solid #333;
+    }
+    #score {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Catch the Falling Ball</h1>
+  <p id="score">Score: 0</p>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+  <script>
+    // Set up canvas and context
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Paddle settings
+    const paddleWidth = 80, paddleHeight = 10;
+    let paddleX = (canvas.width - paddleWidth) / 2;
+
+    // Ball settings
+    let ballX = Math.random() * canvas.width;
+    let ballY = 0;
+    const ballRadius = 10;
+    let ballSpeed = 2;
+
+    // Score
+    let score = 0;
+
+    // Listen for arrow key movement
+    document.addEventListener('keydown', (event) => {
+      if(event.key === 'ArrowLeft') paddleX -= 20;
+      if(event.key === 'ArrowRight') paddleX += 20;
+
+      // Ensure paddle stays inside canvas
+      paddleX = Math.max(0, Math.min(canvas.width - paddleWidth, paddleX));
+    });
+
+    // Draw paddle
+    function drawPaddle() {
+      ctx.fillStyle = '#333';
+      ctx.fillRect(paddleX, canvas.height - paddleHeight - 10, paddleWidth, paddleHeight);
+    }
+
+    // Draw ball
+    function drawBall() {
+      ctx.beginPath();
+      ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = 'red';
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    // Update ball position
+    function updateBall() {
+      ballY += ballSpeed;
+
+      // Check if ball hits paddle
+      if(ballY + ballRadius >= canvas.height - paddleHeight - 10 &&
+         ballX >= paddleX && ballX <= paddleX + paddleWidth) {
+        score++;
+        document.getElementById('score').textContent = "Score: " + score;
+        resetBall();
+      }
+
+      // Reset if ball falls off screen
+      if(ballY - ballRadius > canvas.height) {
+        score = 0;
+        document.getElementById('score').textContent = "Score: " + score;
+        resetBall();
+      }
+    }
+
+    // Reset ball to top
+    function resetBall() {
+      ballX = Math.random() * canvas.width;
+      ballY = 0;
+    }
+
+    // Draw everything
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawPaddle();
+      drawBall();
+      updateBall();
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
+How It Works
+HTML Canvas: The <canvas> element is used for drawing the game.
+CSS Style: Center the canvas and style the background.
+JavaScript Game Logic:
+Track the paddle position and control movement with arrow keys.
+Randomly drop a ball from the top.
+Detect collisions between the ball and paddle.
+Update the score when the ball is successfully caught and reset if missed.
+Use requestAnimationFrame() for smooth animation.
+Try It
+Save the code as index.html.
+Open it in a web browser.
+Use left and right arrow keys 
